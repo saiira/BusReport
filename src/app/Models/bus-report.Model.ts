@@ -1,0 +1,3 @@
+interface BusReportModel{
+    data : Data[];
+}

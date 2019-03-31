@@ -1,0 +1,66 @@
+ 
+<form [formGroup]="busReportForm">
+    <div formArrayName="busReportFormArray"> 
+      <div class="accordion" id="divAccordion" *ngIf="busReportModel != null" >
+        <div *ngFor="let data of busReportModel.data; let i = index" [attr.data-index]="i"  [formGroupName]="i" >
+          <div [id]="'heading' + i">
+            <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+              <h3>  {{data.organisation}} - {{data.date}} </h3>
+              </button>
+          </div>    
+         <div [id]="'collapse' + i" class="collapse" [attr.aria-labelledby]="'heading' + i" data-parent="#divAccordion" >
+      
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info bg-light">
+              <th scope="col">Bus ID</th>
+              <th scope="col">Route Variant</th>
+              <th scope="col">Status</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let busDetail of data.busData" >
+              <td scope="row">{{busDetail.busId}} </td>
+     
+              <td [innerHTML] = "getRouteVariantClass(busDetail.routeVariant)"> 
+                {{busDetail.routeVariant}}
+                
+              </td> 
+           <td [ngClass]="getStatusClass(getStatus( busDetail.deviationFromTimetable ))">
+                  {{getStatus( busDetail.deviationFromTimetable )}}
+                 
+    
+                  
+              </td> 
+              
+               
+            </tr>
+          </tbody>
+        </table>
+     
+   <br/>
+  
+        
+ 
+      <div class="form-group">
+        <label for="txtNotes">Notes:</label>
+        <textarea class="form-control" rows="5" formControlName="txtNotes"  placeholder="Enter notes here" ></textarea>
+        
+      </div>
+    <input type="button" class="btn btn-info" (click)="saveNotes(i);" value="Save Notes" />
+    
+        
+       
+    
+    
+       </div>
+      
+       
+    </div>
+     
+    </div>
+  </div>
+    </form>
+    <br>
+    

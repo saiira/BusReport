@@ -1,0 +1,13 @@
+.bus-Status-Early{
+    color: red;
+}
+.bus-Status-OnTime{
+    color: green;
+}
+.bus-Status-Late{
+    color: blue;
+}
+.bus-Status-NotValid{
+    color : black;
+    font-weight: bold;
+}
